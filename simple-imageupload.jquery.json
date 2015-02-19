@@ -1,0 +1,27 @@
+{
+  "name": "simple-imageupload",
+  "title": "Simple Imageupload",
+  "description": "a beautiful way to upload images",
+  "version": "0.1.0",
+  "homepage": "https://github.com/derapU/jquery-simple-imageupload",
+  "author": {
+    "name": "Andreas Berghaus",
+    "email": "info@bergha.us",
+    "url": "http://bergha.us"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/derapU/jquery-simple-imageupload.git"
+  },
+  "bugs": "https://github.com/derapU/jquery-simple-imageupload/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/derapU/jquery-simple-imageupload/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}
