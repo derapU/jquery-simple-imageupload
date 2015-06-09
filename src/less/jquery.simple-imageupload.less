@@ -1,10 +1,65 @@
 .simple-imageupload-container {
 	box-sizing: border-box;
 	overflow: hidden;
+	position: relative;
 
 	> input[type="file"] {
 		position: absolute;
 		left: -100%;
+	}
+
+	._revert {
+		@height: 2.5em;
+		@width: 2.5em;
+
+		background-color: #000;
+		border-radius: @height/2;
+		bottom: 1em;
+		box-shadow: 2px 2px 10px -3px #000;
+		display: block;
+		height: @height;
+		opacity: 1;
+		position: absolute;
+		right: 1em;
+		transition: ~'right .25s, opacity .25s';
+		width: @width;
+		z-index: 1;
+
+		&-hidden {
+			opacity: 0;
+			right: -1*@width;
+		}
+
+		&:after,
+		&:before {
+			background-color: transparent;
+			border-style: solid;
+			content: '';
+			display: block;
+			position: absolute;
+		}
+		&:before {
+			border-color: #fff;
+			border-bottom-right-radius: 5em;
+			border-top-right-radius: 5em;
+			border-width: @height*.075em @height*.075em @height*.075em 0;
+			box-sizing: border-box;
+			height: @height*.4;
+			left: 50%;
+			margin-left: @width*-0.2;
+			right: @height*.125;
+			top: @height*.315;
+			width: @width*.5;
+		}
+		&:after {
+			border-width: @height*.175 @height*.25 @height*.175 0;
+			border-color: transparent #fff transparent transparent;
+			height: 0;
+			left: 50%;
+			margin-left: @width*-.35;
+			top: @height*.185;
+			width: 0;
+		}
 	}
 
 	.simple-imageupload-preview {
