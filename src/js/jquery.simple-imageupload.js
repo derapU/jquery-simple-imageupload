@@ -8,7 +8,8 @@
 			if ( undefined !== this.simple_imageupload ) {
 				this.simple_imageupload.revert();
 			}
-			return this.simple_imageupload = new SimpleImageupload( $( this ), opts );
+			this.simple_imageupload = new SimpleImageupload( $( this ), opts );
+			return this.simple_imageupload;
 		} );
 	};
 
@@ -18,8 +19,9 @@
 	};
 	SimpleImageupload.prototype = {
 		default_opts: {
-			placeholder: 'Click to choose image',
+			placeholder:   'Click to choose image',
 			current_image: null,
+			trigger:       null,
 			events: {
 				change: function () {}
 			}
@@ -133,6 +135,12 @@
 		bind_events: function () {
 			var self = this;
 
+			if ( null !== this.opts.trigger ) {
+				this.opts.trigger.on( 'click', function () {
+					self.$input.trigger( 'click' );
+				} );
+			}
+
 			this.$preview.on( 'click', function () {
 				self.$input.trigger( 'click' );
 			} );
@@ -146,6 +154,17 @@
 				self.$input.val( self.initial_value );
 				self.update_preview();
 			} );
+		},
+		set_current_image: function ( url ) {
+			this.opts.current_image = url;
+		},
+		reset: function () {
+			var $file = this.$input;
+
+			$file.wrap( '<form>' ).closest( 'form' ).get( 0 ).reset();
+			$file.unwrap();
+
+			this.update_preview();
 		},
 
 		revert: function () {

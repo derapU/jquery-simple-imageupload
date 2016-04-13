@@ -66,7 +66,7 @@ module.exports = function( grunt ) {
     watch: {
       script: {
         files: 'src/js/**/*.js',
-        tasks: ['concat','uglify']
+        tasks: ['concat']
       },
       less: {
         files: 'src/less/**/*.less',

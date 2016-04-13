@@ -1,4 +1,4 @@
-/*! Simple Imageupload - v0.1.0 - 2015-06-09
+/*! Simple Imageupload - v0.1.0 - 2015-11-11
 * https://github.com/derapU/jquery-simple-imageupload
 * Copyright (c) 2015 Andreas Berghaus; Licensed MIT */
 ( function ( $ ) {
@@ -11,7 +11,8 @@
 			if ( undefined !== this.simple_imageupload ) {
 				this.simple_imageupload.revert();
 			}
-			return this.simple_imageupload = new SimpleImageupload( $( this ), opts );
+			this.simple_imageupload = new SimpleImageupload( $( this ), opts );
+			return this.simple_imageupload;
 		} );
 	};
 
