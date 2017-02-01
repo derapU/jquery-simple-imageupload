@@ -1,6 +1,6 @@
-/*! Simple Imageupload - v0.1.0 - 2015-11-11
+/*! Simple Imageupload - v0.1.0 - 2017-02-01
 * https://github.com/derapU/jquery-simple-imageupload
-* Copyright (c) 2015 Andreas Berghaus; Licensed MIT */
+* Copyright (c) 2017 Andreas Berghaus; Licensed MIT */
 ( function ( $ ) {
 	"use strict";
 
@@ -22,8 +22,9 @@
 	};
 	SimpleImageupload.prototype = {
 		default_opts: {
-			placeholder: 'Click to choose image',
+			placeholder:   'Click to choose image',
 			current_image: null,
+			trigger:       null,
 			events: {
 				change: function () {}
 			}
@@ -137,6 +138,12 @@
 		bind_events: function () {
 			var self = this;
 
+			if ( null !== this.opts.trigger ) {
+				this.opts.trigger.on( 'click', function () {
+					self.$input.trigger( 'click' );
+				} );
+			}
+
 			this.$preview.on( 'click', function () {
 				self.$input.trigger( 'click' );
 			} );
@@ -150,6 +157,17 @@
 				self.$input.val( self.initial_value );
 				self.update_preview();
 			} );
+		},
+		set_current_image: function ( url ) {
+			this.opts.current_image = url;
+		},
+		reset: function () {
+			var $file = this.$input;
+
+			$file.wrap( '<form>' ).closest( 'form' ).get( 0 ).reset();
+			$file.unwrap();
+
+			this.update_preview();
 		},
 
 		revert: function () {
